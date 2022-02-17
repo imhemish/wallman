@@ -12,7 +12,7 @@ void main() async {
   print("The backend in use is: ${wall.name}");
 
   // Set wallpaper to /usr/share/backgrounds/xfce/xfce-teal.jpg
-  await wall.setWall("/home/cat/bg/gruv.png");
+  await wall.setWall("/usr/share/backgrounds/xfce/xfce-teal.jpg");
 
   exit(1);
 }
