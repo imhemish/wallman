@@ -34,7 +34,6 @@ class WlrootsBackend extends Backend {
   }
 
   /// Recognised currently active options in swaybg process and replaces the background image with the one provided.
-  /// Python3 is required to be avilable in system
   @override
   Future<void> setWall(String wallPath) async {
     var results = await _getBGopts();

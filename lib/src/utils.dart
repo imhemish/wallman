@@ -9,7 +9,6 @@ Future<String> exec(String cmd) async {
 }
 
 /// Executes a process detached so that the process can still continue even if the dart code exits.
-/// Requires Python3 to be present in system.
 void backgroundExec(String cmd) async {
   print(cmd);
   var cmdList = cmd.split(" ");

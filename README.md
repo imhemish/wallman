@@ -51,7 +51,7 @@ The setWall function is of ```Future<void>``` type.
 ## Additional information
 
 - The library code during execution would return empty values if any error occurs and would not fail, but would write warnings, information to STDERR. So, if you are using it in some program, be sure to discard STDERR or redirect it to /dev/null.
-- Wlroots backend requires python3 to be present in system and callable through "python3" command
+- setWall of WlrootsBackend is currently unusable. Although I implemented it, still I can't figure out how can I detach swaybg process. Current implementation uses 'setsid'.
 - To create your own custom backend, see documentation or source of Backend class (present in lib/src/generic_backend.dart). To see examples of backends and analyse how they are created, analyse the code of lib/src/backends. The simplest to understand would be backman.dart. Understanding gsettings.dart would help a lot.
 - If your custom backend would anyhow utilise gsettings, better check gsettings.dart and analyse the implementation of MateBackend in lib/src/backends/gsettings.dart and implement your own taking it as example, instead of creating your backend from scratch. You can also use gsettings without implementing new backend class, you can just use Gsettings class and set interface, key, and value type in your program itself in which you are gonna use this library; for doing that see example/custom_gsettings.dart
 - Pull requests adding new backends are welcome.
@@ -59,6 +59,6 @@ The setWall function is of ```Future<void>``` type.
 - Pull requests are accepted at [https://github.com/securearth/wallman](https://github.com/securearth/wallman)
 
 ## Todo:
- - warnings
- - wlroots null values
+ - Write warnings
+ - Fix backgroundExec in utils.dart which is making setWall of WlrootsBackend unusable.
  - Check if the user has set solid color instead of picture and return the colour
