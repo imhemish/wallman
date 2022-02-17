@@ -1,10 +1,10 @@
 name: wallman
 description:  A dart library to get and set backgrounds on multiple GUI linux platforms.
-version: 1.0.0
+version: 0.0.1
 platforms:
   linux:
 
-# homepage: https://www.example.com
+homepage: https://github.com/securearth/wallman
 
 environment:
   sdk: '>=2.14.4 <3.0.0'
@@ -18,3 +18,4 @@ dependencies:
   dbus: ^0.6.8 # Required for Gsettings backend
   gsettings: ^0.2.4 # Required for Gsettings backend
   ini: ^2.1.0 # Required for nitrogen backend
+  path: ^1.8.1
