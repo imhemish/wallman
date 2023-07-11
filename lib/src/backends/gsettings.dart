@@ -74,6 +74,8 @@ class GnomeBackend extends GsettingsBackend {
 /// Cinnamon desktop backend
 class CinnamonBackend extends GsettingsBackend {
   @override
+  List<String> gsettingPictureKeys = ["picture-uri"];
+  @override
   String get gsettingsInterface => "org.cinnamon.desktop.background";
   @override
   String get name => "CinnamonBackend";
