@@ -17,7 +17,7 @@ class GsettingsBackend extends Backend {
 
   // Can be overriden by extended class, or can be set with setter methods
   String gsettingsInterface = "";
-  String gsettingPictureKey = "picture-uri";
+  List<String> gsettingPictureKeys = ["picture-uri", "picture-uri-dark"];
 
   late GSettings settings;
 
@@ -33,10 +33,12 @@ class GsettingsBackend extends Backend {
       initialise();
     }
 
-    if (usesUri) {
-      await settings.set(gsettingPictureKey, DBusString("file://" + wallPath));
-    } else {
-      await settings.set(gsettingPictureKey, DBusString(wallPath));
+    for (var gsettingPictureKey in gsettingPictureKeys) {
+      if (usesUri) {
+        await settings.set(gsettingPictureKey, DBusString("file://" + wallPath));
+      } else {
+        await settings.set(gsettingPictureKey, DBusString(wallPath));
+      }
     }
   }
 
@@ -48,7 +50,7 @@ class GsettingsBackend extends Backend {
     }
     if (usesUri) {
       return [
-        (await settings.get(gsettingPictureKey))
+        (await settings.get(gsettingPictureKeys.first))
             .toNative()
             .toString()
             .split("file://")
@@ -56,7 +58,7 @@ class GsettingsBackend extends Backend {
             .toString()
       ];
     } else {
-      return [(await settings.get(gsettingPictureKey)).toNative().toString()];
+      return [(await settings.get(gsettingPictureKeys.first)).toNative().toString()];
     }
   }
 }
@@ -72,6 +74,8 @@ class GnomeBackend extends GsettingsBackend {
 /// Cinnamon desktop backend
 class CinnamonBackend extends GsettingsBackend {
   @override
+  List<String> gsettingPictureKeys = ["picture-uri"];
+  @override
   String get gsettingsInterface => "org.cinnamon.desktop.background";
   @override
   String get name => "CinnamonBackend";
@@ -84,7 +88,7 @@ class MateBackend extends GsettingsBackend {
   @override
   String get gsettingsInterface => "org.mate.background";
   @override
-  String get gsettingPictureKey => "picture-filename";
+  List<String> get gsettingPictureKeys => ["picture-filename"];
   @override
   bool get usesUri => false;
 }
